@@ -134,6 +134,7 @@ jobs:
           qpm restore
           git add qpm.json qpm.shared.json
           git commit -m "Update Package version and info" --allow-empty
+          git push
 
       - name: Read new qpm version
         uses: actions/github-script@v6
