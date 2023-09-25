@@ -150,6 +150,7 @@ jobs:
         env:
           BASE: ${{ env.MAIN_BRANCH }}
           TO_MERGE: ${{ steps.branch.outputs.release-branch }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           gh pr create -B ${BASE} -H ${TO_MERGE} --title 'Update for ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}' --body 'Bump qpm to version ${{ steps.qpm-info.outputs.version }}, Created by Github actions'
 
