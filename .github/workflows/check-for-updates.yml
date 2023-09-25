@@ -146,13 +146,14 @@ jobs:
               core.setOutput('version', qpm.info.version);
             });
 
-      - name: Create PR back into main branch
-        env:
-          BASE: ${{ env.MAIN_BRANCH }}
-          TO_MERGE: ${{ steps.branch.outputs.release-branch }}
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          gh pr create -B ${BASE} -H ${TO_MERGE} --title 'Update for ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}' --body 'Bump qpm to version ${{ steps.qpm-info.outputs.version }}, Created by Github actions'
+      # FIXME: temporarily comment out making the PR to avoid tons of duplicates
+      # - name: Create PR back into main branch
+      #   env:
+      #     BASE: ${{ env.MAIN_BRANCH }}
+      #     TO_MERGE: ${{ steps.branch.outputs.release-branch }}
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #   run: |
+      #     gh pr create -B ${BASE} -H ${TO_MERGE} --title 'Update for ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}' --body 'Bump qpm to version ${{ steps.qpm-info.outputs.version }}, Created by Github actions'
 
       # header files go to a seperate branch unrelated to the one we are pr-ing on
       - name: Commit and push new header files to seperate branch
