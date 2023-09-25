@@ -15,13 +15,13 @@ on:
       - '.github/actions/cordl-run/*'
       - '.github/workflows/check-for-updates.yml'
       - 'scripts/deno/*'
-      - 'lastversion.txt'
 
 env:
   ANDROID_PACKAGE: "com.beatgames.beatsaber"
   BRANCH_PREFIX: "bs"
   CORDL_GIT: "https://github.com/Fernthedev/cordl"
   CORDL_BRANCH: "dev/generic_methods_redo"
+  MAIN_BRANCH: "master"
 
 jobs:
   update-check:
@@ -66,14 +66,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: update-check
     outputs:
-      target-branch: ${{ steps.target-branch.outputs.value }}
+      output-branch: ${{ steps.branch.outputs.output-branch }}
+      release-branch: ${{ steps.branch.outputs.release-branch }}
     if: ${{ needs.update-check.outputs.update-required == 'true' }}
     steps:
       - uses: actions/checkout@v2
 
-      - name: Output header branch name
-        id: target-branch
-        run: echo "value=update/$BRANCH_PREFIX-${{ needs.update-check.outputs.version }}" >> ${GITHUB_OUTPUT}
+      - name: Output branch names
+        id: branch
+        run: |
+          echo "output-branch=headers/${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}" >> ${GITHUB_OUTPUT}
+          echo "release-branch=update/${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}" >> ${GITHUB_OUTPUT}
 
       - name: Download app
         id: download
@@ -102,10 +105,8 @@ jobs:
         run: |
           git config user.name "Github Actions"
           git config user.email "<>"
-          git checkout -b test-${{ steps.target-branch.outputs.value }}
-          git push --set-upstream origin test-${{ steps.target-branch.outputs.value }}
-      # we checkout a new branch so that we can test multiple times instead of having to delete commits from a used branch
-      # this preemptive push will eventually be removed
+          git checkout -b ${{ steps.branch.outputs.release-branch }}
+          git push --set-upstream origin ${{ steps.branch.outputs.release-branch }}
 
       - name: Get QPM
         if: steps.cache-qpm.outputs.cache-hit != 'true'
@@ -125,20 +126,36 @@ jobs:
       - name: Bump package minor version
         run: deno run --allow-run --allow-read ./scripts/deno/bump.ts
 
-      # updated qpm info also needs to go to the main branch to work correctly
+      # updated qpm info also needs to go to the main branch to work correctly, but we set the branch to be the output one
       - name: Update QPM info
         run: |
-          qpm package edit-extra --branchName ${{ steps.target-branch.outputs.value }}
+          qpm package edit-extra --branchName ${{ steps.branch.outputs.output-branch }}
           qpm restore
           git add qpm.json qpm.shared.json
           git commit -m "Update Package version and info" --allow-empty
 
-      # header files go to a seperate branch unrelated to the main one
+      - name: Read new qpm version
+        uses: actions/github-script@v6
+        id: qpm-info
+        with:
+          script:
+            const fs = require('fs');
+            const qpm = await fs.readFile("qpm.json").then(content => JSON.parse(content));
+            core.setOutput('version', qpm.info.version);
+
+      - name: Create PR back into main branch
+        env:
+          BASE: ${{ env.MAIN_BRANCH }}
+          TO_MERGE: ${{ steps.branch.outputs.release-branch }}
+        run: |
+          gh pr create -B ${BASE} -H ${TO_MERGE} --title 'Update for ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}' --body 'Bump qpm to version ${{ steps.qpm-info.outputs.version }}, Created by Github actions'
+
+      # header files go to a seperate branch unrelated to the one we are pr-ing on
       - name: Commit and push new header files to seperate branch
         env:
           VERSION: ${{ needs.update-check.outputs.version }}
-          GIT_TAG: bs-${{ needs.update-check.outputs.version }}
-          TARGET_BRANCH: ${{ steps.target-branch.outputs.value }}
+          GIT_TAG: ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}
+          TARGET_BRANCH: ${{ steps.branch.outputs.output-branch }}
         run: |
           git checkout -b $TARGET_BRANCH
           git add ./include
@@ -147,26 +164,7 @@ jobs:
           git tag $GIT_TAG
           git push origin $GIT_TAG
 
-      - name: Get Commit ID
-        id: commit-id
-        run: |
-          echo $(git rev-parse HEAD)
-          echo "ID=$(git rev-parse HEAD)" >> ${GITHUB_OUTPUT}
-
-      - name: Get QPM info
-        id: qpm-info
-        uses: RedBrumbler/qpm-info@main
-
-      # don't create a release while testing
-      # - name: Create release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     commit: ${{ steps.commit-id.outputs.ID }}
-      #     tag: "v${{ steps.qpm-info.outputs.version}}"
-      #     name: "Update for ${{ needs.update-check.outputs.version }}"
-      #     body: "Update for game version ${{ needs.update-check.outputs.version }}"
-
-  format-headers:
+  compile-pch:
     runs-on: ubuntu-latest
     needs: [ update-check, generate-headers ]
     if: ${{ needs.update-check.outputs.update-required == 'true' }}
@@ -174,7 +172,42 @@ jobs:
       - name: Checkout updated branch
         uses: actions/checkout@v2
         with:
-          ref: ${{ needs.generate-headers.outputs.target-branch }}
+          ref: ${{ needs.generate-headers.outputs.output-branch }}
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Setup ndk
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r26
+
+      - name: Write ndkpath.txt
+        run: echo "${{ steps.setup-ndk.outputs.ndk-path }}" > ndkpath.txt
+
+      - name: Compile pch files
+        run: deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts
+
+      - name: Commit pch files
+        run: |
+          git add TODO
+          git commit -q -m "Compile pch files"
+          git push
+          git tag $GIT_TAG
+          git push origin $GIT_TAG --force
+
+  format-headers:
+    runs-on: ubuntu-latest
+    needs: [ update-check, generate-headers, compile-pch ]
+    if: ${{ needs.update-check.outputs.update-required == 'true' }}
+    steps:
+      - name: Checkout updated branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.generate-headers.outputs.output-branch }}
 
       - name: Setup deno
         uses: denoland/setup-deno@v1
@@ -198,11 +231,11 @@ jobs:
         run: |
           git add ./include
           git commit -q -m "Format files"
-          git push -u origin ${{ needs.generate-headers.outputs.target-branch }}
+          git push -u origin ${{ needs.generate-headers.outputs.output-branch }}
 
       - name: Retag game version commit
         env:
-          GIT_TAG: bs-${{ needs.update-check.outputs.version }}
+          GIT_TAG: ${{ env.BRANCH_PREFIX }}-${{ needs.update-check.outputs.version }}
         run: |
           git tag $GIT_TAG
           git push origin $GIT_TAG --force
