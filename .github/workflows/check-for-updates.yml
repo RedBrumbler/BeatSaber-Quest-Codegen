@@ -27,7 +27,7 @@ jobs:
   update-check:
     runs-on: ubuntu-latest
     outputs:
-      update-required: ${{ !steps.version-check.outputs.result }}
+      update-required: ${{ steps.version-check.outputs.result != 'true' }}
       version: ${{ steps.latest-version.outputs.version }}
     steps:
       - uses: actions/checkout@v2
@@ -61,7 +61,7 @@ jobs:
           echo "Latest version: ${{ steps.latest-version.outputs.version }}"
           echo "Package found: ${{ steps.latest-version.outputs.found }}"
           echo "Tag found: ${{ steps.version-check.outputs.result }}"
-          echo "Update Required: ${{ !steps.version-check.outputs.result }}"
+          echo "Update Required: ${{ steps.version-check.outputs.result != 'true' }}"
 
   generate-headers:
     runs-on: ubuntu-latest
