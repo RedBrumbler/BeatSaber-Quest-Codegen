@@ -141,8 +141,10 @@ jobs:
         with:
           script:
             const fs = require('fs');
-            const qpm = await fs.readFile("qpm.json").then(content => JSON.parse(content));
-            core.setOutput('version', qpm.info.version);
+            await fs.readFile("qpm.json", function read(err, data) {
+              const qpm = JSON.parse(data);
+              core.setOutput('version', qpm.info.version);
+            });
 
       - name: Create PR back into main branch
         env:
