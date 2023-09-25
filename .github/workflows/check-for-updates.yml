@@ -60,6 +60,7 @@ jobs:
         run: |
           echo "Latest version: ${{ steps.latest-version.outputs.version }}"
           echo "Package found: ${{ steps.latest-version.outputs.found }}"
+          echo "Tag found: ${{ steps.version-check.outputs.result }}"
           echo "Update Required: ${{ !steps.version-check.outputs.result }}"
 
   generate-headers:
