@@ -191,8 +191,26 @@ jobs:
         with:
           ndk-version: r26
 
+      - name: Get QPM
+        if: steps.cache-qpm.outputs.cache-hit != 'true'
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: cargo-build.yml
+          name: linux-qpm
+          path: QPM
+          repo: QuestPackageManager/QPM.CLI
+
+      - name: Put QPM on path
+        run: |
+          chmod +x ./QPM/qpm
+          echo "${GITHUB_WORKSPACE}/QPM" >> $GITHUB_PATH
+
       - name: Write ndkpath.txt
         run: echo -n "${{ steps.setup-ndk.outputs.ndk-path }}" > ndkpath.txt
+
+      - name: QPM restore
+        run: qpm restore
 
       - name: Compile pch files
         run: deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts
