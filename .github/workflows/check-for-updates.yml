@@ -192,7 +192,7 @@ jobs:
           ndk-version: r26
 
       - name: Write ndkpath.txt
-        run: echo "${{ steps.setup-ndk.outputs.ndk-path }}" > ndkpath.txt
+        run: echo -n "${{ steps.setup-ndk.outputs.ndk-path }}" > ndkpath.txt
 
       - name: Compile pch files
         run: deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts
