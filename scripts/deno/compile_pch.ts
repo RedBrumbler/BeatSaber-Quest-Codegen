@@ -64,8 +64,6 @@ async function buildHeader(headerPath: string) {
   const args = [
     // "-cc1", // C
     "-c", // C++
-    "-MJ",
-    compileCommandsPath,
     `--sysroot=${sysroot}`,
     `--target=${archTarget}-linux-android${apiLevel}`,
     // clang build args
