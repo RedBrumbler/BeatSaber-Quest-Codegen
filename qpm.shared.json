@@ -5,21 +5,17 @@
     "info": {
       "name": "codegen",
       "id": "codegen",
-      "version": "0.33.1",
+      "version": "1.0.0",
       "url": "https://github.com/sc2ad/BeatSaber-Quest-Codegen",
       "additionalData": {
-        "overrideSoName": "libcodegen.so"
+        "overrideSoName": "libcodegen.so",
+        "branchName": "headers/bs-1.31.1-5951581128"
       }
     },
     "dependencies": [
       {
-        "id": "libil2cpp",
-        "versionRange": "^0.2.3",
-        "additionalData": {}
-      },
-      {
         "id": "beatsaber-hook",
-        "versionRange": "^3.14.0",
+        "versionRange": "^3.0.0",
         "additionalData": {}
       }
     ],
