@@ -217,7 +217,7 @@ jobs:
 
       - name: Commit pch files
         run: |
-          git add TODO
+          git add ./include
           git commit -q -m "Compile pch files"
           git push
           git tag $GIT_TAG
