@@ -1,0 +1,454 @@
+#pragma once
+#include "../cordl_internals/cordl_internals.hpp"
+#include "Zenject/zzzz__ProviderBindingFinalizer_def.hpp"
+#include "beatsaber-hook/shared/utils/base-wrapper-type.hpp"
+#include "beatsaber-hook/shared/utils/typedefs-array.hpp"
+namespace System {
+template<typename T,typename TResult>
+class Func_2;
+}
+namespace Zenject {
+class DiContainer;
+}
+namespace Zenject {
+class BindInfo;
+}
+namespace System {
+class Type;
+}
+namespace System::Collections::Generic {
+template<typename T>
+class List_1;
+}
+namespace Zenject {
+class ISubContainerCreator;
+}
+namespace Zenject {
+class IProvider;
+}
+namespace Zenject {
+class InjectTypeInfo;
+}
+namespace Zenject {
+class SubContainerCreatorCached;
+}
+// Forward declare root types
+namespace Zenject {
+class SubContainerBindingFinalizer;
+}
+namespace Zenject {
+class Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0;
+}
+namespace Zenject {
+class Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1;
+}
+namespace Zenject {
+class Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0;
+}
+namespace Zenject {
+class Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1;
+}
+// Type: ::<>c__DisplayClass5_0
+namespace Zenject {
+// Is value type: false
+// Dependencies: {}
+// Self: TypeDefinitionIndex(TypeDefinitionIndex(10932))
+// CS Name: Zenject.SubContainerBindingFinalizer::<>c__DisplayClass5_0
+class CORDL_TYPE Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 : public ::bs_hook::Il2CppWrapperType {
+public:
+// Declarations
+/// @brief The size of the true reference type
+static constexpr auto  __CORDL_REFERENCE_TYPE_SIZE{0x20};
+
+virtual ~Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0() = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0", modifiers: " const&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 const& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0", modifiers: "&&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0&& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "ptr", ty: "void*", modifiers: "", def_value: None }]
+constexpr explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0(void* ptr) noexcept : ::bs_hook::Il2CppWrapperType(ptr) {
+}
+
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0& operator=(std::nullptr_t) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = nullptr;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0& operator=(void* o) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = o;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0&& o) noexcept = default;
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 const& o) noexcept = default;
+                
+
+
+// Fields
+
+ Zenject::SubContainerBindingFinalizer __declspec(property(get=__get___4__this, put=__set___4__this))  __4__this;
+
+constexpr void __set___4__this(Zenject::SubContainerBindingFinalizer value) ;
+
+constexpr Zenject::SubContainerBindingFinalizer __get___4__this() const;
+
+ Zenject::DiContainer __declspec(property(get=__get_container, put=__set_container))  container;
+
+constexpr void __set_container(Zenject::DiContainer value) ;
+
+constexpr Zenject::DiContainer __get_container() const;
+
+
+// Methods
+
+// Ctor Parameters []
+explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0() ;
+
+/// @brief Method .ctor addr 0x2d9f920 size 0x8 virtual false final false
+ void _ctor() ;
+
+/// @brief Method <FinalizeBindingConcrete>b__0 addr 0x2d9f940 size 0xb8 virtual false final false
+ Zenject::IProvider _FinalizeBindingConcrete_b__0(Zenject::DiContainer _, System::Type concreteType) ;
+
+/// @brief Method __zenCreate addr 0x2d9f9f8 size 0x5c virtual false final false
+static ::bs_hook::Il2CppWrapperType __zenCreate(::ArrayW<::bs_hook::Il2CppWrapperType> P_0) ;
+
+/// @brief Method __zenCreateInjectTypeInfo addr 0x2d9fa54 size 0x1c0 virtual false final false
+static Zenject::InjectTypeInfo __zenCreateInjectTypeInfo() ;
+
+static constexpr bool __CORDL_IS_VALUE_TYPE = false;
+};
+// Non member Declarations
+} // namespace end def Zenject
+// Type: ::<>c__DisplayClass5_1
+namespace Zenject {
+// Is value type: false
+// Dependencies: {}
+// Self: TypeDefinitionIndex(TypeDefinitionIndex(10933))
+// CS Name: Zenject.SubContainerBindingFinalizer::<>c__DisplayClass5_1
+class CORDL_TYPE Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1 : public ::bs_hook::Il2CppWrapperType {
+public:
+// Declarations
+/// @brief The size of the true reference type
+static constexpr auto  __CORDL_REFERENCE_TYPE_SIZE{0x20};
+
+virtual ~Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1() = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1", modifiers: " const&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1 const& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1", modifiers: "&&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1&& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "ptr", ty: "void*", modifiers: "", def_value: None }]
+constexpr explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1(void* ptr) noexcept : ::bs_hook::Il2CppWrapperType(ptr) {
+}
+
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1& operator=(std::nullptr_t) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = nullptr;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1& operator=(void* o) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = o;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1&& o) noexcept = default;
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1 const& o) noexcept = default;
+                
+
+
+// Fields
+
+ Zenject::SubContainerCreatorCached __declspec(property(get=__get_containerCreator, put=__set_containerCreator))  containerCreator;
+
+constexpr void __set_containerCreator(Zenject::SubContainerCreatorCached value) ;
+
+constexpr Zenject::SubContainerCreatorCached __get_containerCreator() const;
+
+ Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 __declspec(property(get=__get_CS$__8__locals1, put=__set_CS$__8__locals1))  CS$__8__locals1;
+
+constexpr void __set_CS$__8__locals1(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 value) ;
+
+constexpr Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0 __get_CS$__8__locals1() const;
+
+
+// Methods
+
+// Ctor Parameters []
+explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1() ;
+
+/// @brief Method .ctor addr 0x2d9f928 size 0x8 virtual false final false
+ void _ctor() ;
+
+/// @brief Method <FinalizeBindingConcrete>b__1 addr 0x2d9fc14 size 0x9c virtual false final false
+ Zenject::IProvider _FinalizeBindingConcrete_b__1(Zenject::DiContainer _, System::Type concreteType) ;
+
+/// @brief Method __zenCreate addr 0x2d9fcb0 size 0x5c virtual false final false
+static ::bs_hook::Il2CppWrapperType __zenCreate(::ArrayW<::bs_hook::Il2CppWrapperType> P_0) ;
+
+/// @brief Method __zenCreateInjectTypeInfo addr 0x2d9fd0c size 0x1c0 virtual false final false
+static Zenject::InjectTypeInfo __zenCreateInjectTypeInfo() ;
+
+static constexpr bool __CORDL_IS_VALUE_TYPE = false;
+};
+// Non member Declarations
+} // namespace end def Zenject
+// Type: ::<>c__DisplayClass6_0
+namespace Zenject {
+// Is value type: false
+// Dependencies: {}
+// Self: TypeDefinitionIndex(TypeDefinitionIndex(10934))
+// CS Name: Zenject.SubContainerBindingFinalizer::<>c__DisplayClass6_0
+class CORDL_TYPE Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 : public ::bs_hook::Il2CppWrapperType {
+public:
+// Declarations
+/// @brief The size of the true reference type
+static constexpr auto  __CORDL_REFERENCE_TYPE_SIZE{0x20};
+
+virtual ~Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0() = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0", modifiers: " const&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 const& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0", modifiers: "&&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0&& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "ptr", ty: "void*", modifiers: "", def_value: None }]
+constexpr explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0(void* ptr) noexcept : ::bs_hook::Il2CppWrapperType(ptr) {
+}
+
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0& operator=(std::nullptr_t) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = nullptr;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0& operator=(void* o) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = o;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0&& o) noexcept = default;
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 const& o) noexcept = default;
+                
+
+
+// Fields
+
+ Zenject::SubContainerBindingFinalizer __declspec(property(get=__get___4__this, put=__set___4__this))  __4__this;
+
+constexpr void __set___4__this(Zenject::SubContainerBindingFinalizer value) ;
+
+constexpr Zenject::SubContainerBindingFinalizer __get___4__this() const;
+
+ Zenject::DiContainer __declspec(property(get=__get_container, put=__set_container))  container;
+
+constexpr void __set_container(Zenject::DiContainer value) ;
+
+constexpr Zenject::DiContainer __get_container() const;
+
+
+// Methods
+
+// Ctor Parameters []
+explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0() ;
+
+/// @brief Method .ctor addr 0x2d9f930 size 0x8 virtual false final false
+ void _ctor() ;
+
+/// @brief Method <FinalizeBindingSelf>b__0 addr 0x2d9fecc size 0xb8 virtual false final false
+ Zenject::IProvider _FinalizeBindingSelf_b__0(Zenject::DiContainer _, System::Type contractType) ;
+
+/// @brief Method __zenCreate addr 0x2d9ff84 size 0x5c virtual false final false
+static ::bs_hook::Il2CppWrapperType __zenCreate(::ArrayW<::bs_hook::Il2CppWrapperType> P_0) ;
+
+/// @brief Method __zenCreateInjectTypeInfo addr 0x2d9ffe0 size 0x1c0 virtual false final false
+static Zenject::InjectTypeInfo __zenCreateInjectTypeInfo() ;
+
+static constexpr bool __CORDL_IS_VALUE_TYPE = false;
+};
+// Non member Declarations
+} // namespace end def Zenject
+// Type: ::<>c__DisplayClass6_1
+namespace Zenject {
+// Is value type: false
+// Dependencies: {}
+// Self: TypeDefinitionIndex(TypeDefinitionIndex(10935))
+// CS Name: Zenject.SubContainerBindingFinalizer::<>c__DisplayClass6_1
+class CORDL_TYPE Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1 : public ::bs_hook::Il2CppWrapperType {
+public:
+// Declarations
+/// @brief The size of the true reference type
+static constexpr auto  __CORDL_REFERENCE_TYPE_SIZE{0x20};
+
+virtual ~Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1() = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1", modifiers: " const&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1 const& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1", modifiers: "&&", def_value: None }]
+constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1&& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "ptr", ty: "void*", modifiers: "", def_value: None }]
+constexpr explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1(void* ptr) noexcept : ::bs_hook::Il2CppWrapperType(ptr) {
+}
+
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1& operator=(std::nullptr_t) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = nullptr;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1& operator=(void* o) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = o;
+    return *this;
+  };
+
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1&& o) noexcept = default;
+  constexpr Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1& operator=(Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1 const& o) noexcept = default;
+                
+
+
+// Fields
+
+ Zenject::SubContainerCreatorCached __declspec(property(get=__get_containerCreator, put=__set_containerCreator))  containerCreator;
+
+constexpr void __set_containerCreator(Zenject::SubContainerCreatorCached value) ;
+
+constexpr Zenject::SubContainerCreatorCached __get_containerCreator() const;
+
+ Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 __declspec(property(get=__get_CS$__8__locals1, put=__set_CS$__8__locals1))  CS$__8__locals1;
+
+constexpr void __set_CS$__8__locals1(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 value) ;
+
+constexpr Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0 __get_CS$__8__locals1() const;
+
+
+// Methods
+
+// Ctor Parameters []
+explicit Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1() ;
+
+/// @brief Method .ctor addr 0x2d9f938 size 0x8 virtual false final false
+ void _ctor() ;
+
+/// @brief Method <FinalizeBindingSelf>b__1 addr 0x2da01a0 size 0x9c virtual false final false
+ Zenject::IProvider _FinalizeBindingSelf_b__1(Zenject::DiContainer _, System::Type contractType) ;
+
+/// @brief Method __zenCreate addr 0x2da023c size 0x5c virtual false final false
+static ::bs_hook::Il2CppWrapperType __zenCreate(::ArrayW<::bs_hook::Il2CppWrapperType> P_0) ;
+
+/// @brief Method __zenCreateInjectTypeInfo addr 0x2da0298 size 0x1c0 virtual false final false
+static Zenject::InjectTypeInfo __zenCreateInjectTypeInfo() ;
+
+static constexpr bool __CORDL_IS_VALUE_TYPE = false;
+};
+// Non member Declarations
+} // namespace end def Zenject
+// Type: Zenject::SubContainerBindingFinalizer
+namespace Zenject {
+// Is value type: false
+// Dependencies: {TypeDefinitionIndex(TypeDefinitionIndex(10927))}
+// Self: TypeDefinitionIndex(TypeDefinitionIndex(10936))
+// CS Name: Zenject.SubContainerBindingFinalizer
+class CORDL_TYPE SubContainerBindingFinalizer : public Zenject::ProviderBindingFinalizer {
+public:
+// Declarations
+using __c__DisplayClass6_1 = Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1;
+
+using __c__DisplayClass6_0 = Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0;
+
+using __c__DisplayClass5_1 = Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1;
+
+using __c__DisplayClass5_0 = Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0;
+
+/// @brief The size of the true reference type
+static constexpr auto  __CORDL_REFERENCE_TYPE_SIZE{0x30};
+
+virtual ~SubContainerBindingFinalizer() = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "SubContainerBindingFinalizer", modifiers: " const&", def_value: None }]
+constexpr SubContainerBindingFinalizer(SubContainerBindingFinalizer const& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "", ty: "SubContainerBindingFinalizer", modifiers: "&&", def_value: None }]
+constexpr SubContainerBindingFinalizer(SubContainerBindingFinalizer&& ) noexcept = default;
+
+// Ctor Parameters [CppParam { name: "ptr", ty: "void*", modifiers: "", def_value: None }]
+constexpr explicit SubContainerBindingFinalizer(void* ptr) noexcept : Zenject::ProviderBindingFinalizer(ptr) {
+}
+
+
+  constexpr SubContainerBindingFinalizer& operator=(std::nullptr_t) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = nullptr;
+    return *this;
+  };
+
+  constexpr SubContainerBindingFinalizer& operator=(void* o) noexcept {
+    this->::bs_hook::Il2CppWrapperType::instance = o;
+    return *this;
+  };
+
+  constexpr SubContainerBindingFinalizer& operator=(SubContainerBindingFinalizer&& o) noexcept = default;
+  constexpr SubContainerBindingFinalizer& operator=(SubContainerBindingFinalizer const& o) noexcept = default;
+                
+
+
+// Fields
+
+ ::bs_hook::Il2CppWrapperType __declspec(property(get=__get__subIdentifier, put=__set__subIdentifier))  _subIdentifier;
+
+constexpr void __set__subIdentifier(::bs_hook::Il2CppWrapperType value) ;
+
+constexpr ::bs_hook::Il2CppWrapperType __get__subIdentifier() const;
+
+ bool __declspec(property(get=__get__resolveAll, put=__set__resolveAll))  _resolveAll;
+
+constexpr void __set__resolveAll(bool value) ;
+
+constexpr bool __get__resolveAll() const;
+
+ System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator> __declspec(property(get=__get__creatorFactory, put=__set__creatorFactory))  _creatorFactory;
+
+constexpr void __set__creatorFactory(System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator> value) ;
+
+constexpr System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator> __get__creatorFactory() const;
+
+
+// Methods
+
+// Ctor Parameters [CppParam { name: "bindInfo", ty: "Zenject::BindInfo", modifiers: "", def_value: None }, CppParam { name: "subIdentifier", ty: "::bs_hook::Il2CppWrapperType", modifiers: "", def_value: None }, CppParam { name: "resolveAll", ty: "bool", modifiers: "", def_value: None }, CppParam { name: "creatorFactory", ty: "System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator>", modifiers: "", def_value: None }]
+explicit SubContainerBindingFinalizer(Zenject::BindInfo bindInfo, ::bs_hook::Il2CppWrapperType subIdentifier, bool resolveAll, System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator> creatorFactory) ;
+
+/// @brief Method .ctor addr 0x2d94140 size 0x44 virtual false final false
+ void _ctor(Zenject::BindInfo bindInfo, ::bs_hook::Il2CppWrapperType subIdentifier, bool resolveAll, System::Func_2<Zenject::DiContainer,Zenject::ISubContainerCreator> creatorFactory) ;
+
+/// @brief Method OnFinalizeBinding addr 0x2d9f4e4 size 0x84 virtual true final false
+ void OnFinalizeBinding(Zenject::DiContainer container) ;
+
+/// @brief Method FinalizeBindingConcrete addr 0x2d9f73c size 0x1e4 virtual false final false
+ void FinalizeBindingConcrete(Zenject::DiContainer container, System::Collections::Generic::List_1<System::Type> concreteTypes) ;
+
+/// @brief Method FinalizeBindingSelf addr 0x2d9f568 size 0x1d4 virtual false final false
+ void FinalizeBindingSelf(Zenject::DiContainer container) ;
+
+static constexpr bool __CORDL_IS_VALUE_TYPE = false;
+};
+// Non member Declarations
+} // namespace end def Zenject
+NEED_NO_BOX(Zenject::SubContainerBindingFinalizer);
+DEFINE_IL2CPP_ARG_TYPE(Zenject::SubContainerBindingFinalizer, "Zenject", "SubContainerBindingFinalizer");
+NEED_NO_BOX(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0);
+DEFINE_IL2CPP_ARG_TYPE(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_0, "Zenject", "SubContainerBindingFinalizer/<>c__DisplayClass5_0");
+NEED_NO_BOX(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1);
+DEFINE_IL2CPP_ARG_TYPE(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass5_1, "Zenject", "SubContainerBindingFinalizer/<>c__DisplayClass5_1");
+NEED_NO_BOX(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0);
+DEFINE_IL2CPP_ARG_TYPE(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_0, "Zenject", "SubContainerBindingFinalizer/<>c__DisplayClass6_0");
+NEED_NO_BOX(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1);
+DEFINE_IL2CPP_ARG_TYPE(Zenject::Zenject__SubContainerBindingFinalizer____c__DisplayClass6_1, "Zenject", "SubContainerBindingFinalizer/<>c__DisplayClass6_1");
