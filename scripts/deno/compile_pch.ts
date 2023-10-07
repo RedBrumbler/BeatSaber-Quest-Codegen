@@ -44,21 +44,53 @@ const sysroot = path.join(
 
 console.log("Using clang", clangPath);
 
+const files = [];
+
 for await (const dirEntry of fs.walk(codegenHeaders, { includeFiles: false })) {
   // Namespace/Namespace.hpp
   const namespaceHeader = path.join(dirEntry.path, `${dirEntry.name}.hpp`);
 
   if (!(await fs.exists(namespaceHeader))) {
-    console.log("Skipping", dirEntry.name, " does not exist");
+    console.log(`Skipping ${dirEntry.name}, header does not exist`);
     continue;
   }
 
-  console.log(`Compiling PCH:`, dirEntry.name);
-  await buildHeader(namespaceHeader);
+  console.log(`Pushing header for compilation: ${dirEntry.path}`);
+  files.push(namespaceHeader);
+}
+
+const fileCount = files.length;
+const procCount = navigator.hardwareConcurrency;
+const chunkSize = Math.ceil(fileCount / procCount);
+
+console.log(`Building with ${procCount} processes, and chunks of size ${chunkSize}`);
+const chunks = [];
+for (let i = 0; i < fileCount; i += chunkSize) {
+    chunks.push(files.slice(i, i + chunkSize));
+}
+
+
+const format_processes = []
+for (let i = 0; i < chunks.length; i++) {
+    format_processes.push(buildChunk(chunks[i]));
+}
+
+await Promise.all(format_processes);
+
+async function buildChunk(headers: string[]) {
+  console.log(`Building chunk made up of ${headers.length} files`);
+  for await (const header of headers) {
+    console.log(`Building header ${header}`);
+    await buildHeader(header);
+  }
 }
 
 async function buildHeader(headerPath: string) {
   const compileCommandsPath = path.join(Deno.cwd(), 'build', path.basename(headerPath)) + '.json.tmp';
+  const buildPath = path.join(Deno.cwd(), 'build')
+  if (!fs.existsSync(buildPath)) {
+    await Deno.mkdir(buildPath, { recursive: true });
+  }
 
   // "clang -cc1 test.h -emit-pch -o test.h.pch"
   const args = [
@@ -76,13 +108,13 @@ async function buildHeader(headerPath: string) {
     `-DNO_CODEGEN_USE`,
     `-DANDROID`,
     `-DNDEBUG`,
+    `-DCOMPILE_TIME_OFFSET_CHECKS`,
     `-D${UNITY_VERSION}`,
     `-O3`,
     `-fdeclspec`,
 
     // PCH
     headerPath,
-    "-emit-pch",
     "-o",
     `${headerPath}.pch`,
   ];
