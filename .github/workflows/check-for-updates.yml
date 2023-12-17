@@ -1,20 +1,21 @@
 name: Check for Game updates
 
 on:
-  schedule:
-    # every day at 5:45 PM UTC (should be decently after beatgames usually releases their game)
-    - cron: '45 17 * * *'
+
+#   schedule:
+#     # every day at 5:45 PM UTC (should be decently after beatgames usually releases their game)
+#     - cron: '45 17 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - 'master'
-      - 'feat/auto-generation'
-    paths:
-      - '.github/actions/download-app/*'
-      - '.github/actions/get-latest-version/*'
-      - '.github/actions/cordl-run/*'
-      - '.github/workflows/check-for-updates.yml'
-      - 'scripts/deno/*'
+#   push:
+#     branches:
+#       - 'master'
+#       - 'feat/auto-generation'
+#     paths:
+#       - '.github/actions/download-app/*'
+#       - '.github/actions/get-latest-version/*'
+#       - '.github/actions/cordl-run/*'
+#       - '.github/workflows/check-for-updates.yml'
+#       - 'scripts/deno/*'
 
 env:
   ANDROID_PACKAGE: "com.beatgames.beatsaber"
