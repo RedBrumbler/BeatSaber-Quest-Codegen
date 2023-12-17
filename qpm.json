@@ -23,11 +23,15 @@
     },
     {
       "id": "beatsaber-hook",
-      "versionRange": "^4.0.0",
+      "versionRange": "^5.0.0",
       "additionalData": {
         "useRelease": true
       }
     }
   ],
-  "workspace": {}
+  "workspace": {
+    "scripts": {
+      "build": ["deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts"]
+    }
+  }
 }
