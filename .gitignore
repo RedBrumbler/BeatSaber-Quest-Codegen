@@ -12,3 +12,5 @@ qpm_defines.cmake
 
 build/
 *.qmod
+
+.cache/

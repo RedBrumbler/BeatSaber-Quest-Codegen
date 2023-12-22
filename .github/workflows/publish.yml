@@ -1,0 +1,86 @@
+name: Publish QPM Package
+
+env:
+  module_id: chroma
+  qmodName: chroma
+  cache-name: chroma_cache
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
+          submodules: true
+          lfs: true
+
+      - uses: seanmiddleditch/gha-setup-ninja@v3
+
+      - name: Get Tag Version
+        id: get_tag_version
+        run: |
+          echo ${GITHUB_REF#refs/tags/}
+          echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
+          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
+
+      - name: QPM Rust Action
+        uses: Fernthedev/qpm-rust-action@main
+        with:
+          #required
+          workflow_token: ${{secrets.GITHUB_TOKEN}}
+
+          restore: true # will run restore on download
+          cache: true #will cache dependencies
+
+          publish: false
+          publish_token: ${{secrets.QPM_TOKEN}}
+
+          version: ${{ steps.get_tag_version.outputs.VERSION }}
+          tag: ${{ steps.get_tag_version.outputs.TAG }}
+
+          # set to true if applicable, ASSUMES the file is already a release asset
+          qpm_release_bin: false
+          qpm_debug_bin: false
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Setup ndk
+        id: setup-ndk
+        uses: ./.github/actions/canary-ndk
+
+      - name: Write ndkpath.txt
+        run: echo -n "${{ steps.setup-ndk.outputs.ndk-path }}" > ndkpath.txt
+
+      - name: Compile pch files
+        run: deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts
+
+      - name: Build
+        run: |
+          cd ${GITHUB_WORKSPACE}
+          qpm-rust s build
+
+      - name: QPM Rust Action
+        uses: Fernthedev/qpm-rust-action@main
+        with:
+          #required
+          workflow_token: ${{secrets.GITHUB_TOKEN}}
+
+          publish_token: ${{secrets.QPM_TOKEN}}
+          eager_publish: true
+
+          version: ${{ steps.get_tag_version.outputs.VERSION }}
+          tag: ${{ steps.get_tag_version.outputs.TAG }}
+
+          # set to true if applicable, ASSUMES the file is already a release asset
+          qpm_release_bin: false
+          qpm_debug_bin: false

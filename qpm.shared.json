@@ -1,5 +1,6 @@
 {
   "config": {
+    "version": "0.2.0",
     "sharedDir": "include",
     "dependenciesDir": "extern",
     "info": {
@@ -10,10 +11,17 @@
       "additionalData": {
         "headersOnly": true,
         "compileOptions": {
-          "cppFeatures": [
-            "-fdeclspec"
-          ]
+          "includePaths": ["include"],
+          "cppFeatures": [],
+          "cppFlags": ["-DNEED_UNSAFE_CSHARP", "-fdeclspec", "-DUNITY_2021"]
         }
+      }
+    },
+    "workspace": {
+      "scripts": {
+        "build": [
+          "deno run --allow-read --allow-write --allow-run ./scripts/deno/compile_pch.ts"
+        ]
       }
     },
     "dependencies": [
@@ -24,48 +32,46 @@
       },
       {
         "id": "beatsaber-hook",
-        "versionRange": "^4.0.0",
+        "versionRange": "^5.0.0",
         "additionalData": {}
       }
-    ],
-    "workspace": {
-      "scripts": {}
-    }
+    ]
   },
   "restoredDependencies": [
     {
       "dependency": {
         "id": "libil2cpp",
-        "versionRange": "=0.3.0",
+        "versionRange": "=0.3.1",
         "additionalData": {
           "headersOnly": true
         }
       },
-      "version": "0.3.0"
-    },
-    {
-      "dependency": {
-        "id": "modloader",
-        "versionRange": "=1.2.3",
-        "additionalData": {
-          "soLink": "https://github.com/sc2ad/QuestLoader/releases/download/v1.2.3/libmodloader64.so",
-          "overrideSoName": "libmodloader.so",
-          "branchName": "version-v1.2.3"
-        }
-      },
-      "version": "1.2.3"
+      "version": "0.3.1"
     },
     {
       "dependency": {
         "id": "beatsaber-hook",
-        "versionRange": "=3.15.0",
+        "versionRange": "=5.0.0",
         "additionalData": {
           "soLink": "https://github.com/sc2ad/beatsaber-hook/releases/download/v0.5.8/libbeatsaber-hook.so",
           "debugSoLink": "https://github.com/sc2ad/beatsaber-hook/releases/download/v0.5.8/debug_libbeatsaber-hook.so",
           "branchName": "master"
         }
       },
-      "version": "3.15.0"
+      "version": "5.0.0"
+    },
+    {
+      "dependency": {
+        "id": "scotland2",
+        "versionRange": "=0.1.3",
+        "additionalData": {
+          "soLink": "https://github.com/sc2ad/scotland2/releases/download/v0.1.3/libsl2.so",
+          "debugSoLink": "https://github.com/sc2ad/scotland2/releases/download/v0.1.3/debug_libsl2.so",
+          "overrideSoName": "libsl2.so",
+          "branchName": "version/v0_1_3"
+        }
+      },
+      "version": "0.1.3"
     }
   ]
 }
